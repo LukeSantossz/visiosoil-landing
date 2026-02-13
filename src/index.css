@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  /* ═══ Terra Inteligente Palette ═══ */
+  --color-teal-deep: #0D7377;
+  --color-teal-hover: #0A5C5F;
+  --color-teal-light: #12999E;
+  --color-soil-brown: #6B4226;
+  --color-soil-light: #8B5E3C;
+  --color-sand-warm: #D4A574;
+  --color-sand-light: #E8CCAD;
+  --color-sand-pale: #F0DCC8;
+  --color-cyan-electric: #00BCD4;
+  --color-cyan-glow: #00E5FF;
+  --color-charcoal-deep: #1A2332;
+  --color-charcoal-mid: #243040;
+  --color-charcoal-soft: #2E3D50;
+  --color-cream-off: #F5F0EB;
+  --color-cream-pure: #FAF7F3;
+  --color-cream-warm: #EDE5DB;
+
+  /* ═══ Typography ═══ */
+  --font-display: "Syne", sans-serif;
+  --font-body: "Outfit", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* ═══ Spacing Scale ═══ */
+  --spacing-section: 7rem;
+  --spacing-section-sm: 4rem;
+
+  /* ═══ Radius ═══ */
+  --radius-card: 1rem;
+  --radius-pill: 100vw;
+  --radius-button: 0.75rem;
+
+  /* ═══ Shadows ═══ */
+  --shadow-card: 0 1px 3px rgba(26, 35, 50, 0.06), 0 8px 24px rgba(26, 35, 50, 0.08);
+  --shadow-card-hover: 0 4px 12px rgba(26, 35, 50, 0.1), 0 16px 40px rgba(26, 35, 50, 0.12);
+  --shadow-glow-teal: 0 0 40px rgba(13, 115, 119, 0.3);
+  --shadow-glow-cyan: 0 0 30px rgba(0, 188, 212, 0.25);
+}
+
+/* ═══ Base Reset & Globals ═══ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-cream-off);
+  color: var(--color-charcoal-deep);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ═══ Selection ═══ */
+::selection {
+  background: var(--color-teal-deep);
+  color: white;
+}
+
+/* ═══ Scrollbar ═══ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-cream-warm); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-sand-warm);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-soil-brown); }
+
+/* ═══ Reduced Motion ═══ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ═══ Grain Overlay ═══ */
+.grain-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ═══ Utility Classes ═══ */
+.text-gradient-teal {
+  background: linear-gradient(135deg, var(--color-teal-deep) 0%, var(--color-cyan-electric) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-soil {
+  background: linear-gradient(135deg, var(--color-soil-brown) 0%, var(--color-sand-warm) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-mesh-hero {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(13, 115, 119, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 188, 212, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(107, 66, 38, 0.05) 0%, transparent 50%),
+    var(--color-cream-off);
+}
+
+.bg-mesh-dark {
+  background:
+    radial-gradient(ellipse at 15% 85%, rgba(13, 115, 119, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 15%, rgba(0, 188, 212, 0.1) 0%, transparent 50%),
+    var(--color-charcoal-deep);
+}
+
+.strata-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-sand-warm) 20%, var(--color-soil-brown) 50%, var(--color-sand-warm) 80%, transparent);
+}
