@@ -1,92 +1,158 @@
 import { motion } from "motion/react";
-import { staggerContainer, fadeSlideUp } from "../../hooks/useScrollReveal";
-import { Clock, DollarSign, Truck } from "lucide-react";
+import { Clock, DollarSign, Truck, AlertTriangle, ArrowRight, CheckCircle2 } from "lucide-react";
 
-const pains = [
+const problems = [
   {
     icon: Clock,
-    title: "Lenta",
-    desc: "Resultados laboratoriais levam semanas. Decisões de manejo não podem esperar.",
-    stat: "15–30 dias",
-    statLabel: "tempo médio de laudo",
+    title: "Processo Demorado",
+    description: "A análise granulométrica tradicional exige coleta de amostras, envio para laboratório, processamento químico e emissão de laudos. Todo esse processo pode levar semanas, atrasando decisões críticas de manejo.",
+    stat: "15-30 dias",
+    statLabel: "tempo médio até o resultado",
   },
   {
     icon: DollarSign,
-    title: "Cara",
-    desc: "Custos com reagentes, equipamentos e mão de obra especializada tornam a análise inacessível para muitos produtores.",
-    stat: "R$ 80–200",
-    statLabel: "por amostra",
+    title: "Alto Custo Operacional",
+    description: "Cada análise laboratorial envolve reagentes químicos, equipamentos especializados, mão de obra técnica e logística de transporte. Para propriedades grandes, o custo de múltiplas análises torna-se proibitivo.",
+    stat: "R$ 80-200",
+    statLabel: "por amostra analisada",
   },
   {
     icon: Truck,
-    title: "Complexa",
-    desc: "A logística de coleta, embalagem e envio de amostras cria um gargalo que desestimula o monitoramento contínuo.",
-    stat: "5 etapas",
-    statLabel: "até o resultado",
+    title: "Logística Complexa",
+    description: "A necessidade de coletar, embalar corretamente, identificar e transportar amostras até o laboratório cria um gargalo operacional que desestimula o monitoramento frequente do solo.",
+    stat: "5+ etapas",
+    statLabel: "até o resultado final",
   },
+  {
+    icon: AlertTriangle,
+    title: "Acesso Limitado",
+    description: "Em regiões mais remotas, a distância de laboratórios credenciados torna a análise ainda mais cara e demorada, deixando muitos produtores sem acesso a dados essenciais para suas decisões.",
+    stat: "72%",
+    statLabel: "dos produtores sem análises regulares",
+  },
+];
+
+const solutions = [
+  "Resultado em menos de 60 segundos",
+  "Análise direto no campo com smartphone",
+  "Custo acessível para qualquer escala",
+  "Sem necessidade de envio de amostras",
 ];
 
 export default function Problem() {
   return (
-    <section className="py-(--spacing-section) bg-cream-off relative overflow-hidden">
-      {/* Subtle soil strata decoration */}
-      <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-sand-warm/40 to-transparent" />
+    <section id="produto" className="section-padding bg-bg-primary relative overflow-hidden">
+      <div className="absolute inset-0 grid-pattern opacity-30" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="container-custom relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="text-center mb-16"
         >
-          <span className="inline-block font-mono text-xs font-semibold text-soil-brown uppercase tracking-widest mb-4">
-            O Problema
+          <span className="badge mb-6">
+            <span className="w-2 h-2 rounded-full bg-secondary" />
+            O Desafio
           </span>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-charcoal-deep">
-            A análise laboratorial tradicional{" "}
-            <span className="text-gradient-soil">não acompanha</span>{" "}
-            o ritmo do campo
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
+            Por que a análise de solo tradicional
+            <br />
+            <span className="text-text-secondary">não atende mais às necessidades do campo?</span>
           </h2>
-          <p className="mt-4 text-lg text-charcoal-deep/60 font-body">
-            Métodos convencionais de análise granulométrica dependem de
-            infraestrutura complexa, químicos e prazos que limitam a tomada de
-            decisão dos produtores rurais.
+          <p className="text-lg text-text-secondary max-w-3xl mx-auto">
+            A agricultura moderna exige decisões rápidas baseadas em dados precisos.
+            Mas os métodos convencionais de análise granulométrica foram desenvolvidos
+            há décadas e não acompanham esse ritmo.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid md:grid-cols-3 gap-6"
-        >
-          {pains.map(({ icon: Icon, title, desc, stat, statLabel }) => (
+        {/* Problem Cards */}
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
+          {problems.map(({ icon: Icon, title, description, stat, statLabel }, i) => (
             <motion.div
               key={title}
-              variants={fadeSlideUp}
-              className="group relative bg-white rounded-[var(--radius-card)] border border-sand-warm/25 p-8 shadow-card hover:shadow-card-hover transition-all duration-400 hover:-translate-y-1"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="card p-6 lg:p-8"
             >
-              <div className="w-12 h-12 rounded-xl bg-soil-brown/8 flex items-center justify-center mb-5 group-hover:bg-soil-brown/15 transition-colors">
-                <Icon size={24} className="text-soil-brown" />
-              </div>
-              <h3 className="font-display font-bold text-xl text-charcoal-deep mb-3">
-                {title}
-              </h3>
-              <p className="font-body text-charcoal-deep/60 text-sm leading-relaxed mb-6">
-                {desc}
-              </p>
-              <div className="pt-4 border-t border-sand-warm/20">
-                <span className="font-mono text-2xl font-bold text-soil-brown">
-                  {stat}
-                </span>
-                <span className="block font-body text-xs text-charcoal-deep/40 mt-1">
-                  {statLabel}
-                </span>
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center shrink-0">
+                  <Icon size={24} className="text-secondary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display font-bold text-lg lg:text-xl text-text-primary mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-text-secondary text-sm lg:text-base leading-relaxed mb-4">
+                    {description}
+                  </p>
+                  <div className="flex items-baseline gap-2 pt-4 border-t border-border">
+                    <span className="font-mono text-2xl lg:text-3xl font-bold text-secondary">
+                      {stat}
+                    </span>
+                    <span className="text-sm text-text-muted">{statLabel}</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Solution Preview */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative rounded-2xl p-8 lg:p-10 bg-gradient-to-br from-primary/10 to-accent/5 border border-primary/20 overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
+
+          <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 className="text-2xl lg:text-3xl font-display font-bold mb-4">
+                Existe uma forma melhor.
+              </h3>
+              <p className="text-text-secondary mb-6 lg:text-lg">
+                A VisioSoil desenvolveu uma tecnologia proprietária que transforma
+                completamente esse cenário, tornando a análise de solo acessível,
+                rápida e precisa.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {solutions.map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <CheckCircle2 size={18} className="text-primary shrink-0" />
+                    <span className="text-text-primary">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#como-funciona"
+                className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+              >
+                <span>Descubra como funciona</span>
+                <ArrowRight size={18} />
+              </a>
+            </div>
+
+            <div className="relative">
+              <div className="aspect-video rounded-xl bg-bg-card border border-border overflow-hidden flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="font-mono text-6xl lg:text-7xl font-bold text-gradient mb-2">
+                    60s
+                  </div>
+                  <p className="text-text-muted">
+                    Do clique ao resultado
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

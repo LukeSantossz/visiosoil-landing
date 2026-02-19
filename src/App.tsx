@@ -5,26 +5,28 @@ import Problem from "./components/sections/Problem";
 import HowItWorks from "./components/sections/HowItWorks";
 import Benefits from "./components/sections/Benefits";
 import Audience from "./components/sections/Audience";
-import Validation from "./components/sections/Validation";
 import Pricing from "./components/sections/Pricing";
+import Validation from "./components/sections/Validation";
 import FAQ from "./components/sections/FAQ";
 import CTAFinal from "./components/sections/CTAFinal";
 import Footer from "./components/sections/Footer";
 
 export default function App() {
   return (
-    <div className="grain-overlay">
+    <div className="min-h-screen bg-bg-primary text-text-primary">
       <Navbar />
-      <Hero />
-      <Partners />
-      <Problem />
-      <HowItWorks />
-      <Benefits />
-      <Audience />
-      <Validation />
-      <Pricing />
-      <FAQ />
-      <CTAFinal />
+      <main>
+        <Hero />
+        <Partners />
+        <Problem />
+        <HowItWorks />
+        <Benefits />
+        <Audience />
+        <Pricing />
+        <Validation />
+        <FAQ />
+        <CTAFinal />
+      </main>
       <Footer />
     </div>
   );

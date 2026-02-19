@@ -1,162 +1,166 @@
 import { motion } from "motion/react";
-import { staggerContainer, fadeSlideUp } from "../../hooks/useScrollReveal";
-import { Check } from "lucide-react";
+import { Check, Sparkles, HelpCircle } from "lucide-react";
 import Button from "../ui/Button";
 
 const plans = [
   {
-    name: "Produtor",
-    desc: "Para produtores rurais e prestadores de serviço",
-    price: "Gratuito",
-    priceSub: "até 10 análises/mês",
+    name: "Starter",
+    description: "Para produtores que querem experimentar",
+    price: "Grátis",
+    priceSuffix: "para sempre",
     features: [
-      "10 análises por mês",
-      "Classificação textural básica",
-      "Relatório PDF simples",
-      "Acesso via smartphone",
+      { text: "10 análises por mês", included: true },
+      { text: "Classificação textural completa", included: true },
+      { text: "Relatório PDF básico", included: true },
+      { text: "Aplicativo mobile", included: true },
+      { text: "Suporte por email", included: true },
+      { text: "API de integração", included: false },
+      { text: "Dashboard analítico", included: false },
+      { text: "Múltiplos usuários", included: false },
     ],
-    cta: "Começar Grátis",
-    variant: "outline" as const,
+    cta: "Começar Gratuitamente",
     highlighted: false,
   },
   {
-    name: "Profissional",
-    desc: "Para consultores e laboratórios de solos",
-    price: "Sob consulta",
-    priceSub: "assinatura mensal",
+    name: "Professional",
+    description: "Para consultores e profissionais",
+    price: "R$ 97",
+    priceSuffix: "/mês",
     features: [
-      "Análises ilimitadas",
-      "Relatórios detalhados e customizáveis",
-      "API de integração com LIMS",
-      "Dashboard analítico",
-      "Suporte técnico prioritário",
-      "Mapeamento por propriedade",
+      { text: "Análises ilimitadas", included: true },
+      { text: "Classificação textural completa", included: true },
+      { text: "Relatórios personalizáveis", included: true },
+      { text: "Aplicativo mobile", included: true },
+      { text: "Suporte prioritário", included: true },
+      { text: "API de integração", included: true },
+      { text: "Dashboard analítico", included: true },
+      { text: "Até 5 usuários", included: true },
     ],
-    cta: "Solicitar Proposta",
-    variant: "primary" as const,
+    cta: "Iniciar Teste Grátis",
     highlighted: true,
+    badge: "Mais Popular",
   },
   {
     name: "Enterprise",
-    desc: "Para seguradoras, cooperativas e instituições",
-    price: "Personalizado",
-    priceSub: "plano corporativo",
+    description: "Para grandes operações e empresas",
+    price: "Sob consulta",
+    priceSuffix: "",
     features: [
-      "Tudo do Profissional",
-      "Multi-tenant & white-label",
-      "SLA garantido",
-      "Integração com ERPs agrícolas",
-      "Treinamento dedicado",
-      "Account manager exclusivo",
+      { text: "Tudo do Professional", included: true },
+      { text: "Usuários ilimitados", included: true },
+      { text: "White-label disponível", included: true },
+      { text: "SLA garantido", included: true },
+      { text: "Integração com ERP", included: true },
+      { text: "Treinamento dedicado", included: true },
+      { text: "Account manager", included: true },
+      { text: "Suporte 24/7", included: true },
     ],
-    cta: "Falar com Comercial",
-    variant: "secondary" as const,
+    cta: "Falar com Vendas",
     highlighted: false,
+  },
+];
+
+const faqs = [
+  {
+    q: "Posso mudar de plano depois?",
+    a: "Sim, você pode fazer upgrade ou downgrade a qualquer momento.",
+  },
+  {
+    q: "O teste grátis exige cartão?",
+    a: "Não, o plano Starter é gratuito para sempre e não requer cartão.",
+  },
+  {
+    q: "Qual a política de reembolso?",
+    a: "Oferecemos reembolso total em até 30 dias se não estiver satisfeito.",
   },
 ];
 
 export default function Pricing() {
   return (
-    <section id="planos" className="py-(--spacing-section) bg-cream-off relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="planos" className="section-padding bg-gradient-section relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[200px]" />
+
+      <div className="container-custom relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="text-center mb-16"
         >
-          <span className="inline-block font-mono text-xs font-semibold text-teal-deep uppercase tracking-widest mb-4">
+          <span className="badge mb-6">
+            <span className="w-2 h-2 rounded-full bg-primary" />
             Planos
           </span>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-charcoal-deep">
-            Escalável do campo ao{" "}
-            <span className="text-gradient-teal">escritório</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
+            Preços transparentes,
+            <br />
+            <span className="text-gradient">valor real</span>
           </h2>
-          <p className="mt-4 text-lg text-charcoal-deep/60 font-body">
-            Modelo SaaS flexível que se adapta do produtor individual à grande corporação.
+          <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+            Comece gratuitamente e escale conforme sua necessidade.
+            Sem surpresas, sem taxas ocultas.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid md:grid-cols-3 gap-6 items-stretch"
-        >
-          {plans.map(({ name, desc, price, priceSub, features, cta, variant, highlighted }) => (
+        {/* Pricing Cards */}
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto mb-16">
+          {plans.map(({ name, description, price, priceSuffix, features, cta, highlighted, badge }, i) => (
             <motion.div
               key={name}
-              variants={fadeSlideUp}
-              className={`relative rounded-[var(--radius-card)] p-8 flex flex-col transition-all duration-400 ${
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className={`relative rounded-2xl p-6 lg:p-8 flex flex-col ${
                 highlighted
-                  ? "bg-charcoal-deep text-white shadow-xl scale-[1.02] border-2 border-teal-deep/40"
-                  : "bg-white border border-sand-warm/25 shadow-card hover:shadow-card-hover hover:-translate-y-1"
+                  ? "bg-gradient-to-b from-primary/15 to-primary/5 border-2 border-primary/30 lg:scale-105"
+                  : "card"
               }`}
             >
-              {highlighted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-teal-deep text-white text-xs font-mono font-semibold rounded-full">
-                  Mais Popular
+              {badge && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-primary text-white text-xs font-semibold rounded-full flex items-center gap-1.5">
+                  <Sparkles size={12} />
+                  {badge}
                 </div>
               )}
 
               <div className="mb-6">
-                <h3
-                  className={`font-display font-bold text-xl ${
-                    highlighted ? "text-white" : "text-charcoal-deep"
-                  }`}
-                >
+                <h3 className="font-display font-bold text-xl text-text-primary mb-1">
                   {name}
                 </h3>
-                <p
-                  className={`font-body text-sm mt-1 ${
-                    highlighted ? "text-white/60" : "text-charcoal-deep/50"
-                  }`}
-                >
-                  {desc}
-                </p>
+                <p className="text-sm text-text-muted">{description}</p>
               </div>
 
               <div className="mb-8">
-                <span
-                  className={`font-display font-extrabold text-3xl ${
-                    highlighted ? "text-cyan-electric" : "text-teal-deep"
-                  }`}
-                >
+                <span className={`font-display font-bold text-4xl ${highlighted ? "text-gradient" : "text-text-primary"}`}>
                   {price}
                 </span>
-                <span
-                  className={`block font-mono text-xs mt-1 ${
-                    highlighted ? "text-white/40" : "text-charcoal-deep/40"
-                  }`}
-                >
-                  {priceSub}
-                </span>
+                {priceSuffix && (
+                  <span className="text-text-muted ml-1">{priceSuffix}</span>
+                )}
               </div>
 
-              <ul className="flex-1 flex flex-col gap-3 mb-8">
-                {features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5">
-                    <Check
-                      size={16}
-                      className={`mt-0.5 shrink-0 ${
-                        highlighted ? "text-cyan-electric" : "text-teal-deep"
-                      }`}
-                    />
-                    <span
-                      className={`font-body text-sm ${
-                        highlighted ? "text-white/75" : "text-charcoal-deep/65"
-                      }`}
-                    >
-                      {f}
+              <ul className="flex-1 space-y-3 mb-8">
+                {features.map(({ text, included }) => (
+                  <li key={text} className="flex items-start gap-3">
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
+                      included
+                        ? highlighted ? "bg-primary/30" : "bg-primary/20"
+                        : "bg-white/5"
+                    }`}>
+                      <Check size={12} className={included ? "text-primary" : "text-text-muted"} />
+                    </div>
+                    <span className={`text-sm ${included ? "text-text-secondary" : "text-text-muted line-through"}`}>
+                      {text}
                     </span>
                   </li>
                 ))}
               </ul>
 
               <Button
-                variant={highlighted ? "primary" : variant}
+                variant={highlighted ? "primary" : "secondary"}
                 href="#contato"
                 className="w-full"
               >
@@ -164,6 +168,31 @@ export default function Pricing() {
               </Button>
             </motion.div>
           ))}
+        </div>
+
+        {/* FAQ Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="glass rounded-2xl p-6 lg:p-8 max-w-3xl mx-auto"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <HelpCircle size={20} className="text-primary" />
+            <h3 className="font-display font-bold text-lg text-text-primary">
+              Perguntas frequentes sobre preços
+            </h3>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-6">
+            {faqs.map(({ q, a }) => (
+              <div key={q}>
+                <h4 className="font-semibold text-text-primary text-sm mb-1">{q}</h4>
+                <p className="text-sm text-text-muted">{a}</p>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

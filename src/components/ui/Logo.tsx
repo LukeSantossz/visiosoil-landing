@@ -1,71 +1,95 @@
 interface LogoProps {
-  variant?: "light" | "dark";
   size?: "sm" | "md" | "lg";
+  showText?: boolean;
 }
 
-export default function Logo({ variant = "dark", size = "md" }: LogoProps) {
-  const sizes = { sm: "h-7", md: "h-9", lg: "h-12" };
-  const textSizes = { sm: "text-lg", md: "text-xl", lg: "text-3xl" };
-  const isDark = variant === "dark";
+export default function Logo({ size = "md", showText = true }: LogoProps) {
+  const sizes = {
+    sm: { icon: 32, text: "text-lg", gap: "gap-2" },
+    md: { icon: 40, text: "text-xl", gap: "gap-2.5" },
+    lg: { icon: 52, text: "text-2xl", gap: "gap-3" },
+  };
+
+  const { icon, text, gap } = sizes[size];
 
   return (
-    <a href="#" className={`flex items-center gap-2.5 ${sizes[size]}`}>
-      {/* Soil Lens Icon — layered strata through a lens */}
+    <a href="#" className={`flex items-center ${gap}`}>
       <svg
-        viewBox="0 0 40 40"
+        width={icon}
+        height={icon}
+        viewBox="0 0 52 52"
         fill="none"
-        className={sizes[size]}
-        style={{ aspectRatio: 1 }}
+        xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Outer lens circle */}
-        <circle
-          cx="20"
-          cy="20"
-          r="18"
-          stroke={isDark ? "#0D7377" : "#F5F0EB"}
-          strokeWidth="2.5"
-          fill="none"
+        <defs>
+          <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#059669" />
+            <stop offset="100%" stopColor="#047857" />
+          </linearGradient>
+          <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#10b981" />
+            <stop offset="100%" stopColor="#059669" />
+          </linearGradient>
+          <linearGradient id="soilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#d97706" />
+            <stop offset="100%" stopColor="#92400e" />
+          </linearGradient>
+        </defs>
+
+        {/* Base circle */}
+        <circle cx="26" cy="26" r="25" fill="url(#bgGrad)" />
+
+        {/* Inner dark circle */}
+        <circle cx="26" cy="26" r="20" fill="#0a0a0a" />
+
+        {/* Soil layers representation */}
+        <path
+          d="M12 30 Q26 28 40 30 L40 38 Q26 36 12 38 Z"
+          fill="url(#soilGrad)"
+          opacity="0.9"
         />
-        {/* Soil strata layers inside */}
-        <clipPath id="lens-clip">
-          <circle cx="20" cy="20" r="15" />
-        </clipPath>
-        <g clipPath="url(#lens-clip)">
-          <rect x="5" y="5" width="30" height="8" fill="#D4A574" />
-          <rect x="5" y="13" width="30" height="7" fill="#8B5E3C" />
-          <rect x="5" y="20" width="30" height="7" fill="#6B4226" />
-          <rect x="5" y="27" width="30" height="8" fill="#4A2E19" />
-        </g>
-        {/* AI scan line */}
-        <line
-          x1="8"
-          y1="20"
-          x2="32"
-          y2="20"
-          stroke="#00BCD4"
-          strokeWidth="1.5"
-          strokeDasharray="3 2"
+        <path
+          d="M12 34 Q26 32 40 34 L40 40 Q26 42 12 40 Z"
+          fill="#78350f"
           opacity="0.8"
         />
-        {/* Inner highlight ring */}
+
+        {/* Stylized leaf/plant */}
+        <path
+          d="M26 14 C26 14 32 18 32 24 C32 28 29 30 26 30 C23 30 20 28 20 24 C20 18 26 14 26 14 Z"
+          fill="url(#leafGrad)"
+        />
+
+        {/* Leaf vein */}
+        <path
+          d="M26 16 L26 28"
+          stroke="#0a0a0a"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.3"
+        />
+
+        {/* Tech dot indicator */}
+        <circle cx="26" cy="24" r="2.5" fill="#06b6d4" />
+
+        {/* Outer ring accent */}
         <circle
-          cx="20"
-          cy="20"
-          r="15"
-          stroke={isDark ? "#0D7377" : "#F5F0EB"}
-          strokeWidth="1"
+          cx="26"
+          cy="26"
+          r="24"
+          stroke="#10b981"
+          strokeWidth="0.5"
           fill="none"
-          opacity="0.4"
+          opacity="0.5"
         />
       </svg>
 
-      {/* Wordmark */}
-      <span
-        className={`font-display font-bold tracking-tight ${textSizes[size]}`}
-      >
-        <span style={{ color: isDark ? "#0D7377" : "#00BCD4" }}>Visio</span>
-        <span style={{ color: isDark ? "#6B4226" : "#D4A574" }}>Soil</span>
-      </span>
+      {showText && (
+        <div className={`font-display font-bold ${text} tracking-tight`}>
+          <span className="text-primary-light">Visio</span>
+          <span className="text-secondary-light">Soil</span>
+        </div>
+      )}
     </a>
   );
 }

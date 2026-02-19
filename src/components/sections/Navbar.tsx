@@ -5,11 +5,11 @@ import Logo from "../ui/Logo";
 import Button from "../ui/Button";
 
 const links = [
+  { label: "Produto", href: "#produto" },
+  { label: "Funcionalidades", href: "#funcionalidades" },
   { label: "Como Funciona", href: "#como-funciona" },
-  { label: "Soluções", href: "#solucoes" },
-  { label: "Parceiros", href: "#parceiros" },
   { label: "Planos", href: "#planos" },
-  { label: "Contato", href: "#contato" },
+  { label: "Parceiros", href: "#parceiros" },
 ];
 
 export default function Navbar() {
@@ -29,12 +29,12 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-cream-off/90 backdrop-blur-xl shadow-card border-b border-sand-warm/30"
+          ? "bg-bg-primary/90 backdrop-blur-xl border-b border-border"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18 lg:h-20">
+      <div className="container-custom">
+        <div className="flex items-center justify-between h-20">
           <Logo size="md" />
 
           {/* Desktop Nav */}
@@ -43,20 +43,26 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="font-body text-sm font-medium text-charcoal-deep/70 hover:text-teal-deep transition-colors relative group"
+                className="font-body text-sm font-medium text-text-secondary hover:text-text-primary transition-colors relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-deep transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full rounded-full" />
               </a>
             ))}
+          </div>
+
+          <div className="hidden lg:flex items-center gap-3">
+            <Button size="sm" variant="ghost" href="#contato">
+              Entrar
+            </Button>
             <Button size="sm" href="#contato">
-              Solicitar Demo
+              Começar Grátis
             </Button>
           </div>
 
           {/* Mobile Toggle */}
           <button
-            className="lg:hidden p-2 text-charcoal-deep"
+            className="lg:hidden p-2 text-text-primary"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
           >
@@ -72,22 +78,27 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-cream-off/98 backdrop-blur-xl border-t border-sand-warm/30 overflow-hidden"
+            className="lg:hidden bg-bg-primary border-t border-border overflow-hidden"
           >
-            <div className="px-6 py-6 flex flex-col gap-4">
+            <div className="container-custom py-6 flex flex-col gap-4">
               {links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="font-body text-base font-medium text-charcoal-deep/80 py-2"
+                  className="font-body text-base font-medium text-text-secondary py-2 hover:text-text-primary transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
-              <Button href="#contato" className="mt-2 w-full">
-                Solicitar Demo
-              </Button>
+              <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-border">
+                <Button variant="secondary" href="#contato" className="w-full">
+                  Entrar
+                </Button>
+                <Button href="#contato" className="w-full">
+                  Começar Grátis
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}

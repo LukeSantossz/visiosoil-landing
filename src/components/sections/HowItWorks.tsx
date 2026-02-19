@@ -1,98 +1,144 @@
 import { motion } from "motion/react";
-import { staggerContainer, fadeSlideUp } from "../../hooks/useScrollReveal";
-import { Camera, Cpu, FileCheck } from "lucide-react";
+import { Camera, Cpu, FileText, ArrowDown } from "lucide-react";
 
 const steps = [
   {
     num: "01",
     icon: Camera,
-    title: "Fotografe a amostra",
-    desc: "Capture uma imagem da amostra de solo com seu smartphone sob condições padronizadas. Sem preparo químico, sem reagentes.",
-    color: "#D4A574",
-    bgColor: "#D4A574",
+    title: "Capture a Imagem",
+    subtitle: "Simples como tirar uma foto",
+    description:
+      "Utilize seu smartphone para fotografar a amostra de solo. Nossa interface guia você para garantir as melhores condições de captura. Não é necessário nenhum equipamento especial, preparo químico ou treinamento técnico.",
+    features: [
+      "Funciona com qualquer smartphone",
+      "Guia de enquadramento inteligente",
+      "Validação automática de qualidade",
+    ],
   },
   {
     num: "02",
     icon: Cpu,
-    title: "IA classifica a textura",
-    desc: "Algoritmos de visão computacional extraem atributos visuais e modelos de ML classificam a textura em uma das 12 classes do triângulo textural.",
-    color: "#0D7377",
-    bgColor: "#0D7377",
+    title: "Processamento Inteligente",
+    subtitle: "Nossa tecnologia em ação",
+    description:
+      "A imagem é processada por nosso sistema proprietário de análise. Algoritmos avançados identificam as características granulométricas e realizam a classificação textural conforme padrões internacionais reconhecidos.",
+    features: [
+      "Tecnologia proprietária VisioSoil",
+      "Processamento em tempo real",
+      "Classificação padronizada USDA",
+    ],
   },
   {
     num: "03",
-    icon: FileCheck,
-    title: "Receba o diagnóstico",
-    desc: "Relatório detalhado com percentuais de areia, silte e argila, classe textural, grau de confiança e recomendações de manejo.",
-    color: "#00BCD4",
-    bgColor: "#00BCD4",
+    icon: FileText,
+    title: "Resultado Completo",
+    subtitle: "Diagnóstico detalhado",
+    description:
+      "Em segundos você recebe um relatório completo com a classificação textural, percentuais estimados de areia, silte e argila, grau de confiança da análise e recomendações práticas para seu contexto.",
+    features: [
+      "12 classes texturais identificadas",
+      "Relatório PDF exportável",
+      "Histórico de análises",
+    ],
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section
-      id="como-funciona"
-      className="py-(--spacing-section) bg-white relative overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="como-funciona" className="section-padding bg-bg-secondary relative overflow-hidden">
+      <div className="container-custom relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-20"
+          className="text-center mb-16 lg:mb-20"
         >
-          <span className="inline-block font-mono text-xs font-semibold text-teal-deep uppercase tracking-widest mb-4">
+          <span className="badge mb-6">
+            <span className="w-2 h-2 rounded-full bg-primary" />
             Como Funciona
           </span>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-charcoal-deep">
-            De foto a diagnóstico em{" "}
-            <span className="text-gradient-teal">três passos</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
+            Três passos simples para
+            <br />
+            <span className="text-gradient">resultados precisos</span>
           </h2>
+          <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+            Desenvolvemos um processo intuitivo que qualquer pessoa pode utilizar,
+            sem necessidade de conhecimento técnico prévio.
+          </p>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid md:grid-cols-3 gap-8 relative"
-        >
-          {/* Connector line (desktop) */}
-          <div className="hidden md:block absolute top-20 left-[20%] right-[20%] h-px bg-gradient-to-r from-sand-warm via-teal-deep to-cyan-electric opacity-20" />
-
-          {steps.map(({ num, icon: Icon, title, desc, color, bgColor }) => (
+        {/* Steps */}
+        <div className="space-y-8 lg:space-y-0">
+          {steps.map(({ num, icon: Icon, title, subtitle, description, features }, i) => (
             <motion.div
               key={num}
-              variants={fadeSlideUp}
-              className="relative text-center group"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
             >
-              {/* Step number */}
-              <motion.div
-                className="mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-all duration-400 group-hover:scale-110 group-hover:rotate-3"
-                style={{ backgroundColor: `${bgColor}12`, border: `2px solid ${bgColor}25` }}
-                whileHover={{ boxShadow: `0 0 30px ${bgColor}30` }}
-              >
-                <Icon size={28} style={{ color }} />
-              </motion.div>
+              <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                {/* Content */}
+                <div className={`${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="font-mono text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                      Passo {num}
+                    </span>
+                    <span className="text-text-muted text-sm">{subtitle}</span>
+                  </div>
 
-              <span
-                className="font-mono text-6xl font-black absolute -top-2 left-1/2 -translate-x-1/2 pointer-events-none select-none"
-                style={{ color: `${bgColor}08` }}
-              >
-                {num}
-              </span>
+                  <h3 className="text-2xl lg:text-3xl font-display font-bold text-text-primary mb-4">
+                    {title}
+                  </h3>
 
-              <h3 className="font-display font-bold text-xl text-charcoal-deep mb-3">
-                {title}
-              </h3>
-              <p className="font-body text-sm text-charcoal-deep/60 leading-relaxed max-w-xs mx-auto">
-                {desc}
-              </p>
+                  <p className="text-text-secondary leading-relaxed mb-6 lg:text-lg">
+                    {description}
+                  </p>
+
+                  <ul className="space-y-3">
+                    {features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-primary" />
+                        </div>
+                        <span className="text-text-secondary">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Visual */}
+                <div className={`${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  <div className="relative">
+                    <div className="card p-8 lg:p-12 text-center">
+                      <div className="w-20 h-20 lg:w-24 lg:h-24 mx-auto rounded-2xl bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/20 flex items-center justify-center mb-6">
+                        <Icon size={40} className="text-primary" />
+                      </div>
+                      <span className="font-mono text-6xl lg:text-7xl font-bold text-text-primary/5">
+                        {num}
+                      </span>
+                    </div>
+
+                    {/* Connection arrow */}
+                    {i < steps.length - 1 && (
+                      <div className="hidden lg:flex absolute -bottom-8 left-1/2 -translate-x-1/2 w-12 h-12 items-center justify-center">
+                        <ArrowDown size={24} className="text-border" />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Divider */}
+              {i < steps.length - 1 && (
+                <div className="divider my-12 lg:my-16" />
+              )}
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
