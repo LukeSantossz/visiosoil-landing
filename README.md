@@ -1,75 +1,70 @@
 # VisioSoil Landing Page
 
-Landing page informativa do projeto VisioSoil, um aplicativo de classificacao textural do solo por inteligencia artificial.
+Landing page informativa do projeto VisioSoil, um aplicativo de classificação textural do solo por inteligência artificial.
 
 ## O que isso faz?
 
-- Apresenta o projeto VisioSoil para potenciais usuarios e parceiros
-- Exibe informacoes sobre o funcionamento do aplicativo
-- Mostra as conquistas do projeto (3o lugar na FETEPS 2025)
+- Apresenta o projeto VisioSoil para potenciais usuários e parceiros
+- Exibe informações sobre o funcionamento do aplicativo
+- Mostra as conquistas do projeto (3º lugar na FETEPS 2025)
 - Lista os parceiros institucionais
-- Formulario para solicitacao de acesso antecipado
+- Formulário para solicitação de acesso antecipado
 
-## O que e?
+## O que é?
 
-Uma landing page web responsiva, single-page application (SPA), desenvolvida para apresentar o projeto VisioSoil. O aplicativo em si (que esta em desenvolvimento separado) classifica a textura do solo a partir de fotos tiradas com celular, voltado principalmente para pequenos produtores rurais.
+Uma landing page web responsiva, single-page application (SPA), desenvolvida para apresentar o projeto VisioSoil. O aplicativo em si (que está em desenvolvimento separado) classifica a textura do solo a partir de fotos tiradas com celular, voltado principalmente para pequenos produtores rurais.
 
 ## Tecnologias Utilizadas
 
-| Tecnologia | Versao | Funcao |
+| Tecnologia | Versão | Função |
 |------------|--------|--------|
 | React | 19.x | Framework de UI |
-| TypeScript | 5.x | Tipagem estatica |
+| TypeScript | 5.x | Tipagem estática |
 | Vite | 7.x | Build tool e dev server |
-| Tailwind CSS | 4.x | Estilizacao utility-first |
-| Motion (Framer Motion) | 12.x | Animacoes e transicoes |
-| Lucide React | latest | Icones SVG |
+| Tailwind CSS | 4.x | Estilização utility-first |
+| Motion (Framer Motion) | 12.x | Animações e transições |
+| Lucide React | latest | Ícones SVG |
 
-## Ambicao do Projeto
+## Ambição do Projeto
 
-Este e o site institucional de um projeto real que:
-- Conquistou 3o lugar na 16a FETEPS 2025 (Feira Tecnologica do Centro Paula Souza)
-- Foi desenvolvido na Fatec Shunji Nishimura de Pompeia
-- Possui parcerias com instituicoes como UFMG e Instituto Politecnico de Santarem (Portugal)
+Este é o site institucional de um projeto real que:
+- Conquistou 3º lugar na 16ª FETEPS 2025 (Feira Tecnológica do Centro Paula Souza)
+- Foi desenvolvido na Fatec Shunji Nishimura de Pompéia
+- Possui parcerias com instituições como UFMG e Instituto Politécnico de Santarém (Portugal)
 
-O aplicativo VisioSoil esta em desenvolvimento ativo e esta landing page serve para captacao de usuarios beta e divulgacao do projeto.
+O aplicativo VisioSoil está em desenvolvimento ativo e esta landing page serve para captação de usuários beta e divulgação do projeto.
 
-## Estagio do Projeto
+## Estágio do Projeto
 
 **Status: Completo**
 
-A landing page esta finalizada e funcional com as seguintes secoes:
-- [x] Hero com apresentacao do produto
-- [x] Secao de problema/solucao
+A landing page está finalizada e funcional com as seguintes seções:
+- [x] Hero com apresentação do produto
+- [x] Seção de problema/solução
 - [x] Como funciona (3 passos)
-- [x] Beneficios do aplicativo
+- [x] Benefícios do aplicativo
 - [x] Conquistas (FETEPS 2025 com carrossel de fotos)
 - [x] Parceiros institucionais
-- [x] Validacao e credibilidade
 - [x] FAQ
-- [x] Formulario de contato/acesso antecipado
+- [x] Formulário de contato/acesso antecipado
 - [x] Footer
 
-## Problemas Conhecidos e Limitacoes
+## Problemas Conhecidos e Limitações
 
-1. **Formulario nao funcional**: O formulario de contato e apenas visual, nao esta integrado a nenhum backend. Necessita integracao futura com API ou servico como Supabase/EmailJS.
+1. **Formulário não funcional**: O formulário de contato é apenas visual, não está integrado a nenhum backend. Necessita integração futura com API ou serviço como Supabase/EmailJS.
 
-2. **Logos dos parceiros**: Utilizamos placeholders estilizados ao inves das logos oficiais das instituicoes. As logos oficiais devem ser adicionadas na pasta `public/images/partners/`.
-
-3. **Precisao reportada**: A pagina menciona 80% de precisao com 5 classes texturais, que sao os valores atuais do prototipo em desenvolvimento.
-
-4. **SEO**: Faltam meta tags Open Graph, structured data e sitemap.xml para melhor indexacao.
+2. **Precisão reportada**: A página menciona 80% de precisão com 5 classes texturais, que são os valores atuais do protótipo em desenvolvimento.
 
 ## Como Executar
 
-### Pre-requisitos
+### Pré-requisitos
 - Node.js 18+
 - npm 9+
 
-### Instalacao
+### Instalação
 
 ```bash
-git clone https://github.com/seu-usuario/visiosoil-landing.git
+git clone https://github.com/LukeSantossz/visiosoil-landing.git
 cd visiosoil-landing
 npm install
 ```
@@ -82,7 +77,7 @@ npm run dev
 
 Acesse: http://localhost:5173
 
-### Build de Producao
+### Build de Produção
 
 ```bash
 npm run build
@@ -97,8 +92,8 @@ visiosoil-landing/
 │   └── images/           # Imagens do projeto (FETEPS, etc.)
 ├── src/
 │   ├── components/
-│   │   ├── sections/     # Secoes da landing page
-│   │   └── ui/           # Componentes reutilizaveis (Button, Logo)
+│   │   ├── sections/     # Seções da landing page
+│   │   └── ui/           # Componentes reutilizáveis (Button, Logo, BackgroundAnimation)
 │   ├── App.tsx           # Componente raiz
 │   ├── main.tsx          # Entry point
 │   └── index.css         # Estilos globais e tema
@@ -112,19 +107,19 @@ visiosoil-landing/
 ## Equipe
 
 **Desenvolvedores:**
-- Joao Pedro Moreno Alegre
-- Lucas dos Santos Goncalves
+- João Pedro Moreno Alegre
+- Lucas dos Santos Gonçalves
 - Fernanda Miyuki Kasita Kashima
 
 **Orientadores:**
-- Prof. Gustavo Faulin
-- Prof. Ricardo Favan
+- Gustavo Faulin
+- Ricardo Favan
 
 ## Links
 
 - Projeto na FETEPS: https://feteps.cps.sp.gov.br/projetos/smartsee-classificacao-textural-do-solo/
 - Fatec Shunji Nishimura: https://www.fundacaonishimura.com.br
 
-## Licenca
+## Licença
 
 MIT
