@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown } from "lucide-react";
+import BackgroundAnimation from "../ui/BackgroundAnimation";
 
 const faqs = [
   {
@@ -64,8 +65,9 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 export default function FAQ() {
   return (
-    <section id="faq" className="section-padding bg-bg-secondary">
-      <div className="container-custom">
+    <section id="faq" className="relative section-padding bg-bg-secondary overflow-hidden">
+      <BackgroundAnimation variant="particles" />
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

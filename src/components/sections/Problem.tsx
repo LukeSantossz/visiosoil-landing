@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Clock, DollarSign, Truck, Users } from "lucide-react";
+import BackgroundAnimation from "../ui/BackgroundAnimation";
 
 const problems = [
   {
@@ -30,8 +31,9 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section id="sobre" className="section-padding bg-bg-secondary">
-      <div className="container-custom">
+    <section id="sobre" className="relative section-padding bg-bg-secondary overflow-hidden">
+      <BackgroundAnimation variant="minimal" />
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +58,7 @@ export default function Problem() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="card p-6 text-center"
+              className="card p-6 text-center hover-lift"
             >
               <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-secondary/10 flex items-center justify-center">
                 <Icon size={24} className="text-secondary" />

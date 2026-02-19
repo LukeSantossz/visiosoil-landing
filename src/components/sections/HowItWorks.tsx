@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Camera, Cpu, FileText, ArrowRight } from "lucide-react";
+import BackgroundAnimation, { AnimatedLines } from "../ui/BackgroundAnimation";
 
 const steps = [
   {
@@ -24,8 +25,10 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="como-funciona" className="section-padding bg-bg-primary">
-      <div className="container-custom">
+    <section id="como-funciona" className="relative section-padding bg-bg-primary overflow-hidden">
+      <BackgroundAnimation variant="particles" />
+      <AnimatedLines className="opacity-30" />
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +54,7 @@ export default function HowItWorks() {
               transition={{ delay: i * 0.15 }}
               className="relative"
             >
-              <div className="card p-8 h-full">
+              <div className="card p-8 h-full hover-lift">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
                     <Icon size={24} className="text-primary" />

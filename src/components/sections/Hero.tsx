@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, Leaf, Smartphone, Zap, CheckCircle } from "lucide-react";
 import Button from "../ui/Button";
+import BackgroundAnimation from "../ui/BackgroundAnimation";
 
 const features = [
   { icon: Smartphone, text: "100% Mobile" },
@@ -10,8 +11,9 @@ const features = [
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center pt-20 bg-gradient-to-b from-bg-primary to-bg-secondary">
-      <div className="container-custom py-16 lg:py-24">
+    <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-b from-bg-primary to-bg-secondary overflow-hidden">
+      <BackgroundAnimation variant="hero" />
+      <div className="container-custom relative z-10 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
           <motion.div
@@ -61,7 +63,11 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative bg-bg-card rounded-3xl p-8 shadow-2xl border border-border">
+            <motion.div
+              className="relative bg-bg-card rounded-3xl p-8 shadow-2xl border border-border backdrop-blur-sm"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               {/* Stats Grid */}
               <div className="grid grid-cols-2 gap-6">
                 {[
@@ -69,13 +75,19 @@ export default function Hero() {
                   { value: "80%", label: "Precisão" },
                   { value: "<1min", label: "Tempo de análise" },
                   { value: "3°", label: "Lugar FETEPS 2025" },
-                ].map(({ value, label }) => (
-                  <div key={label} className="text-center p-4 bg-bg-secondary rounded-2xl">
+                ].map(({ value, label }, i) => (
+                  <motion.div
+                    key={label}
+                    className="text-center p-4 bg-bg-secondary rounded-2xl hover:bg-primary/5 transition-colors"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.4 + i * 0.1 }}
+                  >
                     <div className="font-mono text-3xl font-bold text-primary mb-1">
                       {value}
                     </div>
                     <div className="text-sm text-text-muted">{label}</div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
@@ -90,11 +102,25 @@ export default function Hero() {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/20 rounded-full blur-2xl" />
+            {/* Animated decorative elements */}
+            <motion.div
+              className="absolute -top-4 -right-4 w-24 h-24 bg-accent/30 rounded-full blur-2xl"
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/30 rounded-full blur-2xl"
+              animate={{
+                scale: [1.2, 1, 1.2],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            />
           </motion.div>
         </div>
       </div>

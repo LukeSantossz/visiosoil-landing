@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Trophy, Calendar, MapPin, ExternalLink, ChevronLeft, ChevronRight, Linkedin } from "lucide-react";
+import BackgroundAnimation from "../ui/BackgroundAnimation";
 
 const team = [
   { name: "João Pedro Moreno Alegre", role: "Desenvolvedor", linkedin: "https://www.linkedin.com/in/jo%C3%A3o-pedro-moreno-alegre-851017272/" },
   { name: "Lucas dos Santos Gonçalves", role: "Desenvolvedor", linkedin: "https://www.linkedin.com/in/lucas-gon%C3%A7alvessz/" },
   { name: "Fernanda Miyuki K. Kashima", role: "Desenvolvedora", linkedin: "https://www.linkedin.com/in/fernanda-miyuki-kasita-kashima-0357bb2b6/" },
-  { name: "Prof. Gustavo Faulin", role: "Orientador", linkedin: "https://www.linkedin.com/in/proffaulin/" },
-  { name: "Prof. Ricardo Favan", role: "Coorientador", linkedin: "https://www.linkedin.com/in/ricardo-favan/" },
+  { name: "Gustavo Faulin", role: "Orientador", linkedin: "https://www.linkedin.com/in/proffaulin/" },
+  { name: "Ricardo Favan", role: "Coorientador", linkedin: "https://www.linkedin.com/in/ricardo-favan/" },
 ];
 
 const images = [
@@ -27,8 +28,9 @@ export default function Achievements() {
   }, []);
 
   return (
-    <section id="conquistas" className="section-padding bg-bg-primary">
-      <div className="container-custom">
+    <section id="conquistas" className="relative section-padding bg-bg-primary overflow-hidden">
+      <BackgroundAnimation variant="section" />
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

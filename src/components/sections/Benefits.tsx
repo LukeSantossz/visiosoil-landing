@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Smartphone, Zap, Wallet, MapPin, Leaf, Shield } from "lucide-react";
+import BackgroundAnimation, { GradientMesh } from "../ui/BackgroundAnimation";
 
 const benefits = [
   {
@@ -36,8 +37,10 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section id="beneficios" className="section-padding bg-bg-secondary">
-      <div className="container-custom">
+    <section id="beneficios" className="relative section-padding bg-bg-secondary overflow-hidden">
+      <GradientMesh />
+      <BackgroundAnimation variant="minimal" />
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,7 +64,7 @@ export default function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="card p-6 group hover:border-primary/30"
+              className="card p-6 group hover:border-primary/30 hover-lift"
             >
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <Icon size={22} className="text-primary" />
