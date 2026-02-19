@@ -64,6 +64,7 @@ coverage
 .claude/
 
 # Project documents (keep locally, not in repo)
+docs/
 *.pdf
 *.txt
 !README.txt

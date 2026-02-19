@@ -1,144 +1,102 @@
 import { motion } from "motion/react";
-import { ArrowRight, Play, CheckCircle2, Smartphone } from "lucide-react";
+import { ArrowRight, Leaf, Smartphone, Zap, CheckCircle } from "lucide-react";
 import Button from "../ui/Button";
 
-const highlights = [
-  "Resultado em segundos",
-  "Direto no celular",
-  "Sem envio de amostras",
-  "Fácil de usar",
-];
-
-const stats = [
-  { value: "5", label: "Classes texturais" },
-  { value: "80%", label: "Precisão atual" },
-  { value: "<1min", label: "Tempo de análise" },
-  { value: "100%", label: "Mobile" },
+const features = [
+  { icon: Smartphone, text: "100% Mobile" },
+  { icon: Zap, text: "Resultado em segundos" },
+  { icon: Leaf, text: "Para o produtor rural" },
 ];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden pt-16 sm:pt-20">
-      {/* Grid pattern */}
-      <div className="absolute inset-0 grid-pattern" />
-
-      {/* Animated orbs - hidden on mobile */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-64 h-64 md:w-80 md:h-80 lg:w-[500px] lg:h-[500px] bg-primary/20 rounded-full blur-[100px] lg:blur-[150px] hidden sm:block"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-48 h-48 md:w-64 md:h-64 lg:w-[400px] lg:h-[400px] bg-accent/15 rounded-full blur-[80px] lg:blur-[120px] hidden sm:block"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <div className="relative z-10 container-custom py-12 sm:py-16 lg:py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
+    <section className="min-h-screen flex items-center pt-20 bg-gradient-to-b from-bg-primary to-bg-secondary">
+      <div className="container-custom py-16 lg:py-24">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <Smartphone size={16} className="text-primary" />
-            <span className="text-sm font-medium text-primary-light">
-              Aplicativo para Análise de Solo
-            </span>
-          </motion.div>
+            <div className="badge mb-6">
+              <Leaf size={14} />
+              Tecnologia para o campo
+            </div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight mb-6"
-          >
-            Classificação Textural
-            <br />
-            do Solo por{" "}
-            <span className="text-gradient">IA</span>
-          </motion.h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-text-primary mb-6 leading-tight">
+              Análise de solo
+              <br />
+              <span className="text-gradient">na palma da mão</span>
+            </h1>
 
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed mb-10 px-4"
-          >
-            Um aplicativo simples que transforma uma foto do seu celular em um
-            diagnóstico da textura do solo. Desenvolvido para{" "}
-            <span className="text-text-primary font-semibold">pequenos produtores rurais</span>.
-          </motion.p>
+            <p className="text-lg text-text-secondary mb-8 max-w-lg">
+              Classificação textural do solo por inteligência artificial.
+              Tire uma foto, receba o resultado. Simples assim.
+            </p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 px-4"
-          >
-            <Button size="lg" icon={<ArrowRight size={20} />} href="#contato" className="w-full sm:w-auto">
-              Solicitar Acesso Antecipado
-            </Button>
-            <Button size="lg" variant="secondary" href="#como-funciona" icon={<Play size={18} />} iconPosition="left" className="w-full sm:w-auto">
-              Como Funciona
-            </Button>
-          </motion.div>
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <Button size="lg" href="#contato" icon={<ArrowRight size={18} />}>
+                Quero Acesso Antecipado
+              </Button>
+              <Button size="lg" variant="outline" href="#como-funciona">
+                Como Funciona
+              </Button>
+            </div>
 
-          {/* Highlights */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4"
-          >
-            {highlights.map((text) => (
-              <span key={text} className="flex items-center gap-2 text-sm text-text-secondary">
-                <CheckCircle2 size={16} className="text-primary shrink-0" />
-                <span>{text}</span>
-              </span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Stats Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8 }}
-          className="mt-20 sm:mt-24"
-        >
-          <div className="glass rounded-2xl p-6 sm:p-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-              {stats.map(({ value, label }, i) => (
-                <motion.div
-                  key={label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.9 + i * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="font-mono font-bold text-3xl sm:text-4xl text-primary-light mb-2">
-                    {value}
-                  </div>
-                  <div className="text-sm text-text-muted">
-                    {label}
-                  </div>
-                </motion.div>
+            <div className="flex flex-wrap gap-6">
+              {features.map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-2 text-text-secondary">
+                  <Icon size={18} className="text-primary" />
+                  <span className="text-sm font-medium">{text}</span>
+                </div>
               ))}
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* Visual */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="relative bg-bg-card rounded-3xl p-8 shadow-2xl border border-border">
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-6">
+                {[
+                  { value: "5", label: "Classes texturais" },
+                  { value: "80%", label: "Precisão" },
+                  { value: "<1min", label: "Tempo de análise" },
+                  { value: "3°", label: "Lugar FETEPS 2025" },
+                ].map(({ value, label }) => (
+                  <div key={label} className="text-center p-4 bg-bg-secondary rounded-2xl">
+                    <div className="font-mono text-3xl font-bold text-primary mb-1">
+                      {value}
+                    </div>
+                    <div className="text-sm text-text-muted">{label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Features list */}
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="space-y-3">
+                  {["Funciona offline", "Sem equipamentos especiais", "Histórico de análises"].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <CheckCircle size={18} className="text-primary" />
+                      <span className="text-sm text-text-secondary">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl" />
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/20 rounded-full blur-2xl" />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
