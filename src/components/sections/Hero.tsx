@@ -1,30 +1,30 @@
 import { motion } from "motion/react";
-import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Play, CheckCircle2, Smartphone } from "lucide-react";
 import Button from "../ui/Button";
 
 const highlights = [
-  "Análise em menos de 60 segundos",
-  "Precisão validada cientificamente",
-  "Funciona em qualquer smartphone",
-  "Sem necessidade de laboratório",
+  "Resultado em segundos",
+  "Direto no celular",
+  "Sem envio de amostras",
+  "Fácil de usar",
 ];
 
 const stats = [
-  { value: "<60s", label: "Tempo de análise" },
-  { value: "95%+", label: "Precisão" },
-  { value: "12", label: "Classes texturais" },
-  { value: "24/7", label: "Disponibilidade" },
+  { value: "5", label: "Classes texturais" },
+  { value: "80%", label: "Precisão atual" },
+  { value: "<1min", label: "Tempo de análise" },
+  { value: "100%", label: "Mobile" },
 ];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden">
+    <section className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden pt-16 sm:pt-20">
       {/* Grid pattern */}
       <div className="absolute inset-0 grid-pattern" />
 
-      {/* Animated orbs */}
+      {/* Animated orbs - hidden on mobile */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[150px]"
+        className="absolute top-1/4 left-1/4 w-64 h-64 md:w-80 md:h-80 lg:w-[500px] lg:h-[500px] bg-primary/20 rounded-full blur-[100px] lg:blur-[150px] hidden sm:block"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -32,7 +32,7 @@ export default function Hero() {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/15 rounded-full blur-[120px]"
+        className="absolute bottom-1/4 right-1/4 w-48 h-48 md:w-64 md:h-64 lg:w-[400px] lg:h-[400px] bg-accent/15 rounded-full blur-[80px] lg:blur-[120px] hidden sm:block"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.2, 0.4, 0.2],
@@ -40,17 +40,19 @@ export default function Hero() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 container-custom pt-32 pb-20 lg:pt-36 lg:pb-28">
+      <div className="relative z-10 container-custom py-12 sm:py-16 lg:py-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="badge mb-8 mx-auto"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
           >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span>Tecnologia Brasileira de Análise de Solo</span>
+            <Smartphone size={16} className="text-primary" />
+            <span className="text-sm font-medium text-primary-light">
+              Aplicativo para Análise de Solo
+            </span>
           </motion.div>
 
           {/* Headline */}
@@ -58,12 +60,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-[1.1] tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight mb-6"
           >
             Classificação Textural
             <br />
-            do Solo com{" "}
-            <span className="text-gradient">Inteligência Artificial</span>
+            do Solo por{" "}
+            <span className="text-gradient">IA</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -71,12 +73,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed mb-10 px-4"
           >
-            Transforme uma simples foto em um diagnóstico granulométrico completo.
-            Nossa tecnologia proprietária utiliza visão computacional para entregar
-            resultados que antes levavam semanas em{" "}
-            <span className="text-text-primary font-semibold">menos de 1 minuto</span>.
+            Um aplicativo simples que transforma uma foto do seu celular em um
+            diagnóstico da textura do solo. Desenvolvido para{" "}
+            <span className="text-text-primary font-semibold">pequenos produtores rurais</span>.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -84,13 +85,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 px-4"
           >
-            <Button size="lg" icon={<ArrowRight size={20} />} href="#contato">
-              Solicitar Acesso Gratuito
+            <Button size="lg" icon={<ArrowRight size={20} />} href="#contato" className="w-full sm:w-auto">
+              Solicitar Acesso Antecipado
             </Button>
-            <Button size="lg" variant="secondary" href="#demo" icon={<Play size={18} />} iconPosition="left">
-              Ver Demonstração
+            <Button size="lg" variant="secondary" href="#como-funciona" icon={<Play size={18} />} iconPosition="left" className="w-full sm:w-auto">
+              Como Funciona
             </Button>
           </motion.div>
 
@@ -99,12 +100,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
+            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4"
           >
             {highlights.map((text) => (
               <span key={text} className="flex items-center gap-2 text-sm text-text-secondary">
-                <CheckCircle2 size={16} className="text-primary" />
-                {text}
+                <CheckCircle2 size={16} className="text-primary shrink-0" />
+                <span>{text}</span>
               </span>
             ))}
           </motion.div>
@@ -115,10 +116,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.8 }}
-          className="mt-20 lg:mt-28"
+          className="mt-20 sm:mt-24"
         >
-          <div className="glass rounded-2xl p-6 lg:p-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="glass rounded-2xl p-6 sm:p-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {stats.map(({ value, label }, i) => (
                 <motion.div
                   key={label}
@@ -127,10 +128,10 @@ export default function Hero() {
                   transition={{ duration: 0.4, delay: 0.9 + i * 0.1 }}
                   className="text-center"
                 >
-                  <div className="font-mono font-bold text-3xl lg:text-4xl text-primary-light mb-2">
+                  <div className="font-mono font-bold text-3xl sm:text-4xl text-primary-light mb-2">
                     {value}
                   </div>
-                  <div className="font-body text-sm text-text-muted">
+                  <div className="text-sm text-text-muted">
                     {label}
                   </div>
                 </motion.div>

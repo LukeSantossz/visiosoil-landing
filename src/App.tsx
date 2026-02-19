@@ -1,11 +1,10 @@
 import Navbar from "./components/sections/Navbar";
 import Hero from "./components/sections/Hero";
-import Partners from "./components/sections/Partners";
 import Problem from "./components/sections/Problem";
 import HowItWorks from "./components/sections/HowItWorks";
 import Benefits from "./components/sections/Benefits";
-import Audience from "./components/sections/Audience";
-import Pricing from "./components/sections/Pricing";
+import Achievements from "./components/sections/Achievements";
+import Partners from "./components/sections/Partners";
 import Validation from "./components/sections/Validation";
 import FAQ from "./components/sections/FAQ";
 import CTAFinal from "./components/sections/CTAFinal";
@@ -17,12 +16,11 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <Partners />
         <Problem />
         <HowItWorks />
         <Benefits />
-        <Audience />
-        <Pricing />
+        <Achievements />
+        <Partners />
         <Validation />
         <FAQ />
         <CTAFinal />

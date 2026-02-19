@@ -5,11 +5,11 @@ import Logo from "../ui/Logo";
 import Button from "../ui/Button";
 
 const links = [
-  { label: "Produto", href: "#produto" },
-  { label: "Funcionalidades", href: "#funcionalidades" },
+  { label: "Sobre", href: "#produto" },
   { label: "Como Funciona", href: "#como-funciona" },
-  { label: "Planos", href: "#planos" },
+  { label: "Conquistas", href: "#conquistas" },
   { label: "Parceiros", href: "#parceiros" },
+  { label: "Contato", href: "#contato" },
 ];
 
 export default function Navbar() {
@@ -34,8 +34,8 @@ export default function Navbar() {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-20">
-          <Logo size="md" />
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          <Logo size="sm" />
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
@@ -51,12 +51,9 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-3">
-            <Button size="sm" variant="ghost" href="#contato">
-              Entrar
-            </Button>
+          <div className="hidden lg:flex items-center">
             <Button size="sm" href="#contato">
-              Começar Grátis
+              Solicitar Acesso
             </Button>
           </div>
 
@@ -91,12 +88,9 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-border">
-                <Button variant="secondary" href="#contato" className="w-full">
-                  Entrar
-                </Button>
+              <div className="mt-4 pt-4 border-t border-border">
                 <Button href="#contato" className="w-full">
-                  Começar Grátis
+                  Solicitar Acesso
                 </Button>
               </div>
             </div>
