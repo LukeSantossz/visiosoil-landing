@@ -30,26 +30,36 @@ const faqs = [
   },
 ];
 
-function FaqItem({ q, a }: { q: string; a: string }) {
+function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false);
+  const headingId = `faq-heading-${index}`;
+  const panelId = `faq-panel-${index}`;
 
   return (
     <div className="border-b border-border last:border-0">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 py-5 text-left"
-      >
-        <span className="font-semibold text-text-primary">{q}</span>
-        <motion.div
-          animate={{ rotate: open ? 180 : 0 }}
-          className="shrink-0 w-8 h-8 rounded-full bg-bg-secondary flex items-center justify-center"
+      <h3>
+        <button
+          id={headingId}
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-controls={panelId}
+          className="w-full flex items-center justify-between gap-4 py-5 text-left"
         >
-          <ChevronDown size={18} className="text-text-muted" />
-        </motion.div>
-      </button>
+          <span className="font-semibold text-text-primary">{q}</span>
+          <motion.div
+            animate={{ rotate: open ? 180 : 0 }}
+            className="shrink-0 w-8 h-8 rounded-full bg-bg-secondary flex items-center justify-center"
+          >
+            <ChevronDown size={18} className="text-text-muted" />
+          </motion.div>
+        </button>
+      </h3>
       <AnimatePresence>
         {open && (
           <motion.div
+            id={panelId}
+            role="region"
+            aria-labelledby={headingId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -90,8 +100,8 @@ export default function FAQ() {
           className="max-w-3xl mx-auto"
         >
           <div className="card p-6 sm:p-8">
-            {faqs.map((faq) => (
-              <FaqItem key={faq.q} {...faq} />
+            {faqs.map((faq, i) => (
+              <FaqItem key={faq.q} {...faq} index={i} />
             ))}
           </div>
         </motion.div>
