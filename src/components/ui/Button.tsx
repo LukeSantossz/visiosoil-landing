@@ -9,6 +9,8 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   icon?: ReactNode;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
 export default function Button({
@@ -19,6 +21,8 @@ export default function Button({
   onClick,
   className = "",
   icon,
+  disabled = false,
+  type = "button",
 }: ButtonProps) {
   const base = "inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-200";
 
@@ -58,10 +62,12 @@ export default function Button({
 
   return (
     <motion.button
+      type={type}
       onClick={onClick}
-      className={styles}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      disabled={disabled}
+      className={`${styles} ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
+      whileHover={disabled ? undefined : { scale: 1.02 }}
+      whileTap={disabled ? undefined : { scale: 0.98 }}
     >
       {content}
     </motion.button>
