@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Trophy, Calendar, MapPin, ExternalLink, ChevronLeft, ChevronRight, Linkedin } from "lucide-react";
+import { Trophy, Calendar, MapPin, ExternalLink, ChevronLeft, ChevronRight, Linkedin, ImageOff } from "lucide-react";
 import BackgroundAnimation from "../ui/BackgroundAnimation";
 
 const team = [
@@ -16,6 +16,29 @@ const images = [
   "/images/IMG_20251003_131404.jpg",
   "/images/IMG_20251003_160616_1.jpg",
 ];
+
+function ImageWithFallback({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return (
+      <div className={`flex flex-col items-center justify-center bg-bg-tertiary text-text-muted ${className ?? ""}`}>
+        <ImageOff size={48} className="mb-3 opacity-40" />
+        <span className="text-sm opacity-60">Foto indisponível</span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      className={className}
+      onError={() => setHasError(true)}
+    />
+  );
+}
 
 export default function Achievements() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -55,39 +78,53 @@ export default function Achievements() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative rounded-2xl overflow-hidden bg-bg-tertiary aspect-[4/3]"
+            role="region"
+            aria-label="Fotos da FETEPS 2025"
+            aria-roledescription="carrossel"
+            className="relative rounded-2xl overflow-hidden bg-bg-tertiary aspect-video"
           >
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={currentImage}
-                src={images[currentImage]}
-                alt="Equipe na FETEPS 2025"
-                className="w-full h-full object-cover"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              />
-            </AnimatePresence>
+            <div aria-live="polite" aria-atomic="true" className="absolute inset-0">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImage}
+                  className="absolute inset-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <ImageWithFallback
+                    src={images[currentImage]}
+                    alt={`Equipe na FETEPS 2025 - Foto ${currentImage + 1} de ${images.length}`}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {/* Navigation */}
             <button
               onClick={() => setCurrentImage((prev) => (prev - 1 + images.length) % images.length)}
+              aria-label="Foto anterior"
               className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={() => setCurrentImage((prev) => (prev + 1) % images.length)}
+              aria-label="Próxima foto"
               className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors"
             >
               <ChevronRight size={20} />
             </button>
 
             {/* Dots */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2" role="tablist" aria-label="Selecionar foto">
               {images.map((_, i) => (
                 <button
                   key={i}
+                  role="tab"
+                  aria-selected={i === currentImage}
+                  aria-label={`Foto ${i + 1}`}
                   onClick={() => setCurrentImage(i)}
                   className={`w-2 h-2 rounded-full transition-all ${
                     i === currentImage ? "bg-white w-6" : "bg-white/50"

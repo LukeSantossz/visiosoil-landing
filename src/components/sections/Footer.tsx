@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Mail, MapPin, ExternalLink, Heart } from "lucide-react";
 import Logo from "../ui/Logo";
@@ -6,30 +7,27 @@ const partners = [
   {
     name: "Centro Paula Souza",
     description: "Autarquia do Governo de SP responsável pelas Fatecs e Etecs",
-    logo: "https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/1/2022/09/logo-cps-2022.svg",
+    logo: "/images/logo_cps_versao_cor.png",
     url: "https://www.cps.sp.gov.br",
-    bg: "#8B0000",
   },
   {
     name: "UFMG",
     description: "Universidade Federal de Minas Gerais - Pesquisa em solos",
-    logo: "https://www.ufmg.br//app/uploads/2025/09/ufmg-logo.svg",
+    logo: "/images/ufmg-logo.svg",
     url: "https://ufmg.br",
-    bg: "#1a1a2e",
+    logoClass: "h-12 scale-[2]",
   },
   {
     name: "Fundação Shunji Nishimura",
     description: "Ecossistema de educação e inovação agrícola em Pompéia-SP",
-    logo: "https://fsnt.org.br/wp-content/uploads/2025/02/Logo-FSNT-horizontal-01.jpg",
+    logo: "/images/fns.jpg",
     url: "https://fsnt.org.br",
-    bg: "#ffffff",
   },
   {
     name: "Politécnico de Santarém",
     description: "Instituto Politécnico de Portugal - Parceria internacional",
-    logo: "https://www.ipsantarem.pt/wp-content/uploads/2021/08/cropped-PolitSantarem_Logo-01.png",
+    logo: "/images/polisanta.png",
     url: "https://www.ipsantarem.pt",
-    bg: "#006837",
   },
 ];
 
@@ -41,6 +39,28 @@ const links = [
   { label: "FAQ", href: "#faq" },
   { label: "Contato", href: "#contato" },
 ];
+
+function PartnerLogo({ partner }: { partner: (typeof partners)[number] }) {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className="h-14 rounded-lg flex items-center justify-center mb-4 px-4 bg-white">
+      {hasError ? (
+        <span className="text-xs font-semibold text-neutral-500 text-center leading-tight">
+          {partner.name}
+        </span>
+      ) : (
+        <img
+          src={partner.logo}
+          alt={partner.name}
+          loading="lazy"
+          className={`w-auto max-w-full object-contain ${partner.logoClass ?? "h-10"}`}
+          onError={() => setHasError(true)}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
@@ -75,16 +95,7 @@ export default function Footer() {
                 transition={{ delay: i * 0.1 }}
                 className="card p-5 group"
               >
-                <div
-                  className="h-14 rounded-lg flex items-center justify-center mb-4 px-4"
-                  style={{ backgroundColor: partner.bg }}
-                >
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="h-10 w-auto max-w-full object-contain"
-                  />
-                </div>
+                <PartnerLogo partner={partner} />
                 <h4 className="font-semibold text-text-primary group-hover:text-primary transition-colors mb-1">
                   {partner.name}
                 </h4>
