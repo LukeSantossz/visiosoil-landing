@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 interface BlobProps {
   className?: string;
@@ -164,6 +164,17 @@ export default function BackgroundAnimation({
   variant = "section",
   className = ""
 }: BackgroundAnimationProps) {
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return (
+      <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+        <div className="absolute w-[500px] h-[500px] -top-40 -right-40 rounded-full blur-3xl opacity-20 bg-gradient-to-br from-primary/40 to-accent/30" />
+        <div className="absolute w-[400px] h-[400px] bottom-0 -left-40 rounded-full blur-3xl opacity-20 bg-gradient-to-tr from-accent/20 to-transparent" />
+      </div>
+    );
+  }
+
   if (variant === "hero") {
     return (
       <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
